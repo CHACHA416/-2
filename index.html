@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>贪吃蛇游戏</title>
+    <meta name="description" content="经典贪吃蛇小游戏，支持手机触屏操作">
+    <meta name="keywords" content="贪吃蛇,小游戏,H5游戏,手机游戏">
+
+    <!-- PWA相关 -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="贪吃蛇">
+
+    <!-- 分享相关 -->
+    <meta property="og:title" content="贪吃蛇游戏">
+    <meta property="og:description" content="经典贪吃蛇小游戏，快来挑战你的最高分！">
+    <meta property="og:type" content="game">
+    <meta property="og:url" content="">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="game-container">
+        <h1>贪吃蛇游戏</h1>
+        <div class="score-board">
+            <div>得分: <span id="score">0</span></div>
+            <div>最高分: <span id="highScore">0</span></div>
+        </div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <!-- 游戏控制区域 -->
+        <div class="game-controls">
+            <!-- 方向键控制器 -->
+            <div class="d-pad-container">
+                <div class="d-pad">
+                    <button class="d-btn d-up" id="upBtn">
+                        <span>▲</span>
+                    </button>
+                    <button class="d-btn d-left" id="leftBtn">
+                        <span>◀</span>
+                    </button>
+                    <button class="d-btn d-right" id="rightBtn">
+                        <span>▶</span>
+                    </button>
+                    <button class="d-btn d-down" id="downBtn">
+                        <span>▼</span>
+                    </button>
+                    <div class="d-center"></div>
+                </div>
+            </div>
+
+            <!-- 游戏按钮 -->
+            <div class="game-buttons">
+                <button id="startBtn" class="game-btn primary">开始</button>
+                <button id="pauseBtn" class="game-btn secondary">暂停</button>
+                <button id="resetBtn" class="game-btn danger">重置</button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p>💻 电脑：方向键控制 | 📱 手机：点击方向按钮或滑动屏幕</p>
+        </div>
+        <div class="game-over" id="gameOver">
+            <h2>游戏结束!</h2>
+            <p>你的得分: <span id="finalScore">0</span></p>
+            <button onclick="resetGame()">再玩一次</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

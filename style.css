@@ -1,0 +1,364 @@
+/* 基础重置和全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 10px;
+}
+
+/* 游戏容器 */
+.game-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 标题 */
+h1 {
+    font-size: 2.8em;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #fff, #e3f2fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 得分板 */
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 25px;
+    border-radius: 16px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 游戏画布 */
+#gameCanvas {
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    background-color: #1a1a2e;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px;
+}
+
+/* 游戏控制区域 */
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+    gap: 30px;
+}
+
+/* D-Pad 容器 */
+.d-pad-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* D-Pad 主体 - 经典十字形设计 */
+.d-pad {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    border-radius: 20px;
+    box-shadow: 
+        inset 0 4px 8px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* D-Pad 按钮基础样式 */
+.d-btn {
+    position: absolute;
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    border: none;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* D-Pad 按钮激活状态 */
+.d-btn:active {
+    transform: scale(0.95);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #2980b9, #3498db);
+}
+
+/* 上下按钮 - 矩形 */
+.d-up, .d-down {
+    width: 50px;
+    height: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+}
+
+.d-up {
+    top: 8px;
+}
+
+.d-down {
+    bottom: 8px;
+}
+
+/* 左右按钮 - 矩形 */
+.d-left, .d-right {
+    width: 35px;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 8px;
+}
+
+.d-left {
+    left: 8px;
+}
+
+.d-right {
+    right: 8px;
+}
+
+/* 中心装饰 */
+.d-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #34495e, #2c3e50);
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 游戏按钮区域 */
+.game-buttons {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+/* 游戏按钮样式 */
+.game-btn {
+    width: 100px;
+    height: 45px;
+    border: none;
+    border-radius: 22px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    -webkit-tap-highlight-color: transparent;
+    color: white;
+}
+
+.game-btn.primary {
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+}
+
+.game-btn.secondary {
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+}
+
+.game-btn.danger {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+}
+
+.game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.game-btn:active {
+    transform: translateY(0);
+}
+
+.game-btn:disabled {
+    background: #7f8c8d;
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.6;
+}
+
+/* 说明文字 */
+.instructions {
+    margin: 20px 0;
+    font-size: 0.9em;
+    opacity: 0.8;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+/* 游戏结束弹窗 */
+.game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    display: none;
+    z-index: 1000;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.game-over h2 {
+    color: #e74c3c;
+    margin-bottom: 20px;
+    font-size: 2.2em;
+}
+
+.game-over p {
+    margin-bottom: 25px;
+    font-size: 1.4em;
+}
+
+.game-over button {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    h1 {
+        font-size: 2.2em;
+    }
+    
+    #gameCanvas {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .d-pad {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .d-up, .d-down {
+        width: 40px;
+        height: 30px;
+    }
+    
+    .d-left, .d-right {
+        width: 30px;
+        height: 40px;
+    }
+    
+    .d-center {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .game-buttons {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .game-btn {
+        width: 80px;
+        height: 40px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    #gameCanvas {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .score-board {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .d-pad {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .d-btn {
+        font-size: 1.2em;
+    }
+    
+    .d-up, .d-down {
+        width: 35px;
+        height: 25px;
+    }
+    
+    .d-left, .d-right {
+        width: 25px;
+        height: 35px;
+    }
+}
